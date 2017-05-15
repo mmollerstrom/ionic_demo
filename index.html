@@ -6,6 +6,11 @@
   </head>
   <body>
     <div ng-app="demoApp" ng-controller="mainController">
+      <form ng-submit="addUser()">
+        <input type="text" ng-model="newUser.firstName" placeholder="Add your first name...">
+        <input type="text" ng-model="newUser.lastName" placeholder="Add your last name...">
+        <button type="submit">Add family member</button>
+      </form>
       <div ng-repeat="user in users">
         <say-hello message="Hi"></say-hello>
       </div>
@@ -13,6 +18,15 @@
 
     <script>
     var demoApp = angular.module("demoApp", []);
+
+    demoApp.controller("mainController", function($scope, userService) {
+      $scope.users = userService.users();
+      $scope.newUser = {};
+      $scope.addUser = function(){
+        userService.add($scope.newUser);
+        $scope.newUser = {};
+      }
+    });
 
     demoApp.service('userService', function(){
       var collection = [
@@ -23,12 +37,11 @@
       return {
         users: function(){
           return collection;
+        },
+        add: function(object){
+          collection.push(object);
         }
       }
-    });
-
-    demoApp.controller("mainController", function($scope, userService) {
-      $scope.users = userService.users();
     });
 
     demoApp.directive("sayHello", function() {
@@ -41,5 +54,6 @@
       };
     });
     </script>
+
   </body>
 </html>
