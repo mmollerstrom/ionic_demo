@@ -6,7 +6,7 @@
   </head>
   <body>
     <div ng-app="demoApp" ng-controller="mainController">
-      <h1>{{['Hello', firstName, lastName].join(' ')}}!</h1>
+      <say-hello message="hi"></say-hello>
     </div>
 
     <script>
@@ -15,6 +15,16 @@
     demoApp.controller("mainController", function($scope) {
       $scope.firstName = "Mileydis";
       $scope.lastName = "Mollerstrom";
+    });
+
+    demoApp.directive("sayHello", function() {
+      return {
+        scope: false,
+        link: function($scope, element, attrs){
+          $scope.message = attrs.message;
+        },
+        template: "<h1> {{[message, firstName, lastName].join(' ')}}!</h1>"
+      };
     });
     </script>
   </body>
