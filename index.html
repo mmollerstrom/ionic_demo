@@ -5,9 +5,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   </head>
   <body>
-    <div ng-app="">
-      <input type="text" ng-model="name" placeholder="Give me a name..">
-      <h1 ng-if="name">Hello {{name}}!</h1>
+    <div ng-app="demoApp" ng-controller="mainController">
+      <h1>{{['Hello', firstName, lastName].join(' ')}}!</h1>
     </div>
+
+    <script>
+    var demoApp = angular.module("demoApp", []);
+
+    demoApp.controller("mainController", function($scope) {
+      $scope.firstName = "Mileydis";
+      $scope.lastName = "Mollerstrom";
+    });
+    </script>
   </body>
 </html>
