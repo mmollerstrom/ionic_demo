@@ -4,11 +4,15 @@
       <div class="col">
         <div class="list">
           <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Weight" ng-model="data.weight">
+            <input type="number" class="item item-input" placeholder="Weight in kg / lbs" ng-model="data.weight">
           </label>
           <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Height" ng-model="data.height">
+            <input type="number" class="item item-input" placeholder="Height in cm / inch" ng-model="data.height">
           </label>
+
+          <input type="radio" name="conversion" id="metric" ng-model="data.metric_bmi" ng-value="true"> Metric
+          <input type="radio" name="conversion" id="standard" ng-model="data.standard_bmi" ng-value="true"> Standard<br>
+
           <button class="button button-full button-calm" ng-click="calculateBMI()">Calculate</button>
         </div>
         <div class="card" ng-if="person">

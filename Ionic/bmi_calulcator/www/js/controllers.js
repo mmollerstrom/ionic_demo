@@ -11,7 +11,12 @@ angular.module('starter.controllers', [])
       weight: $scope.data.weight,
       height: $scope.data.height
     });
-  person.calculate_bmi();
-  $scope.person = person;
+    if ($scope.data.metric_bmi == true) {
+      person.calculate_bmi("metric_bmi");
+    } else {
+      person.calculate_bmi("standard_bmi");
+    }
+    $scope.person = person;
   };
+
 });
